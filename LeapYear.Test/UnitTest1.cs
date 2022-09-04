@@ -2,16 +2,22 @@ namespace LeapYear.Test;
 
 public class UnitTest1
 {
+
+    // Every year that is exactly divisible by four is a leap year, except for years that are exactly divisible by 100, 
+    // but these centennial years are leap years if they are exactly divisible by 400. For example, the years 1700, 1800,
+    // and 1900 are not leap years, but the years 1600 and 2000 are.
     [Fact]
-    public void Test1()
+    public void LeapYear_divisible_by_4_should_be_true()
     {
         // Arrange
-        Program ly = new Program();
+        using var Leap = new Program();
 
         // Act
-        var temp = ly.HelloWorld();
+        var temp = Leap.DivisibleByFour(1600);
+    
+
         // Assert
-        temp.Should().Be("Hello World!");
+        temp.Should().Be(true);
 
     }
 }

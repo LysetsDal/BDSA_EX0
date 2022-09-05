@@ -13,11 +13,36 @@ public class UnitTest1
         using var Leap = new Program();
 
         // Act
-        var temp = Leap.DivisibleByFour(1600);
-    
+        var temp = Leap.DivisibleBy_4(1600);
+
 
         // Assert
         temp.Should().Be(true);
+    }
 
+    [Fact]
+    public void LeapYear_divisible_by_100_should_be_true()
+    {
+        // Arrange
+        using var Leap = new Program();
+
+        // Act
+        var temp = Leap.DivisibleBy_100(100);
+
+        // Assert
+        temp.Should().Be(true);
+    }
+
+    [Fact]
+    public void LeapYear_divisible_by_400_should_be_true()
+    {
+        // Arrange
+        using var Leap = new Program();
+
+        // Act
+        var temp = Leap.DivisibleBy_400(800);
+
+        // Assert
+        temp.Should().Be(true);
     }
 }

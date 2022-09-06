@@ -3,32 +3,39 @@
 
 public class Program : IDisposable
 {
-    // public static bool isValidInput { get; set; } = false;
-    // public static string input { get; set; } = String.Empty;
+
     static Regex r = new Regex(@"^\d{4}$");
     static bool validInput = default;
     static string input = string.Empty;
 
     static void Main(string[] args)
     {
-
+        // do-while loop to prompt user again on wrong typed input.
+        WriteLine("Enter a year, to determine if it's a leap year: ");
         do
         {
-            WriteLine("Enter a year, to determine if it's a leap year: ");
             string? rawInput = ReadLine();
 
             if (rawInput != null) { input = rawInput; }
 
-            if (InputIsNotNullAndRegexMatch(input))
+            try
             {
-                var num = ParseStringToInt(input);
+                if (InputIsNotNullAndRegexMatch(input))
+                {
+                    var num = ParseStringToInt(input);
 
-
-                WriteLine(Answer(IsLeapYear(num)));
+                    WriteLine(Answer(IsLeapYear(num)));
+                }
+                else
+                {
+                    WriteLine($"{input} is not a valid number.\n\nTry again: ");
+                }
             }
-            else
+            catch (System.FormatException)
             {
-                WriteLine($"{input} is not a valid number.\n");
+                validInput = false;
+                WriteLine($"{input} is not a valid number.\n\nTry again: ");
+                continue;
             }
 
         } while (!validInput);
@@ -48,20 +55,16 @@ public class Program : IDisposable
 
     public static int ParseStringToInt(string input)
     {
-        try
+
+        if (int.TryParse(input, out int j))
         {
-            if (int.TryParse(input, out int j) && j > 1582)
+            if (j > 1582)
             {
                 validInput = true;
                 return j;
             }
-            return -1;
         }
-        catch (System.Exception)
-        {
-            throw new FormatException("Format error - Input must be 4 positive integers and over 1582.");
-        }
-
+        throw new FormatException("FORMAT ERROR: Input MUST be exactly 4 positive integers and higher than 1582.");
     }
 
 

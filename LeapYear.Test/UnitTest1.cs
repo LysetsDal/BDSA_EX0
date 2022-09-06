@@ -3,18 +3,14 @@ namespace LeapYear.Test;
 public class UnitTest1
 {
 
-    // Every year that is exactly divisible by four is a leap year, except for years that are exactly divisible by 100, 
-    // but these centennial years are leap years if they are exactly divisible by 400. For example, the years 1700, 1800,
-    // and 1900 are not leap years, but the years 1600 and 2000 are.
+    // No arrange-step in test on static members necessary.
     [Fact]
     public void LeapYear_divisible_by_4_should_be_true()
     {
         // Arrange
-        using var Leap = new Program();
 
         // Act
-        var temp = Leap.DivisibleBy_4(1600);
-
+        var temp = Program.DivisibleBy_4(1600);
 
         // Assert
         temp.Should().Be(true);
@@ -24,10 +20,9 @@ public class UnitTest1
     public void LeapYear_divisible_by_100_should_be_true()
     {
         // Arrange
-        using var Leap = new Program();
 
         // Act
-        var temp = Leap.DivisibleBy_100(100);
+        var temp = Program.DivisibleBy_100(100);
 
         // Assert
         temp.Should().Be(true);
@@ -37,12 +32,65 @@ public class UnitTest1
     public void LeapYear_divisible_by_400_should_be_true()
     {
         // Arrange
-        using var Leap = new Program();
 
         // Act
-        var temp = Leap.DivisibleBy_400(800);
+        var temp = Program.DivisibleBy_400(800);
 
         // Assert
         temp.Should().Be(true);
     }
+
+    [Fact]
+    public void LeapYear_1700_should_be_false()
+    {
+        // Arrange
+        int num = 1700;
+
+        // Act
+        var temp = Program.IsLeapYear(num);
+
+        // Assert
+        temp.Should().Be(false);
+    }
+
+    [Fact]
+    public void LeapYear_1620_should_be_true()
+    {
+        // Arrange
+        int num = 1620;
+
+        // Act
+        var temp = Program.IsLeapYear(num);
+
+        // Assert
+        temp.Should().Be(true);
+    }
+
+
+    [Fact]
+    public void LeapYear_Answer_Yay()
+    {
+        // Arrange
+
+        // Act
+        string num = Program.Answer(true);
+
+        // Assert
+        num.Should().Be("Yay");
+
+    }
+
+        [Fact]
+    public void LeapYear_Parsing_Should_Be_minus1()
+    {
+        // Arrange
+        string num = "1581";
+
+        // Act
+        var temp = Program.ParseStringToInt(num);
+
+        // Assert
+        temp.Should().Be(-1);
+    }
+
 }

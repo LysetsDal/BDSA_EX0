@@ -8,7 +8,6 @@ public class UnitTest1
     public void LeapYear_divisible_by_4_should_be_true()
     {
         // Arrange
-
         // Act
         var temp = Program.DivisibleBy_4(1600);
 
@@ -20,7 +19,6 @@ public class UnitTest1
     public void LeapYear_divisible_by_100_should_be_true()
     {
         // Arrange
-
         // Act
         var temp = Program.DivisibleBy_100(100);
 
@@ -32,7 +30,6 @@ public class UnitTest1
     public void LeapYear_divisible_by_400_should_be_true()
     {
         // Arrange
-
         // Act
         var temp = Program.DivisibleBy_400(800);
 
@@ -71,7 +68,6 @@ public class UnitTest1
     public void LeapYear_Answer_Yay()
     {
         // Arrange
-
         // Act
         string num = Program.Answer(true);
 
@@ -80,17 +76,54 @@ public class UnitTest1
 
     }
 
-        [Fact]
-    public void LeapYear_Parsing_Should_Be_minus1()
+    [Fact]
+    public void Parsing_Error_Should_Throw_FormatException()
     {
         // Arrange
         string num = "1581";
 
         // Act
-        var temp = Program.ParseStringToInt(num);
+        Action act = () => Program.ParseStringToInt(num);
 
         // Assert
-        temp.Should().Be(-1);
+        act.Should().Throw<FormatException>().WithMessage("FORMAT ERROR: Input MUST be exactly 4 positive integers and higher than 1582.");
     }
+
+    [Fact]
+    public void Regex_PAttern_Matches_Should_Be_True()
+    {
+        // Arrange
+        string str = "1862";
+        // Act
+        bool value = Program.InputIsNotNullAndRegexMatch(str);
+        // Assert
+        value.Should().Be(true);
+    }
+
+    [Fact]
+    public void Regex_Pattern_Matches_Should_Be_false()
+    {
+        // Arrange
+        string str = "0000";
+        // Act
+        bool value = Program.InputIsNotNullAndRegexMatch(str);
+        // Assert
+        value.Should().Be(true);
+    }
+
+    //Disabled on purpose for checking bad input.
+#pragma warning disable CS8600, CS8604
+    [Fact]
+    public void Input_Is_Null_Should_Be_false()
+    {
+        // Arrange
+        string str = null;
+        // Act
+        bool value = Program.InputIsNotNullAndRegexMatch(str);
+        // Assert
+        value.Should().Be(false);
+    }
+#pragma warning restore CS8600, CS8604
+
 
 }

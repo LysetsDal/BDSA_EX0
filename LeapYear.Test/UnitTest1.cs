@@ -77,7 +77,7 @@ public class UnitTest1
     }
 
     [Fact]
-    public void Parsing_Error_Should_Throw_FormatException()
+    public void Parsing_Error_Should_Throw_ArgumentException()
     {
         // Arrange
         string num = "1581";
@@ -86,7 +86,7 @@ public class UnitTest1
         Action act = () => Program.ParseStringToInt(num);
 
         // Assert
-        act.Should().Throw<FormatException>().WithMessage("FORMAT ERROR: Input MUST be exactly 4 positive integers and higher than 1582.");
+        act.Should().Throw<ArgumentException>().WithMessage("ARGUMENT ERROR: Input MUST be exactly 4 integers and higher than 1582.");
     }
 
     [Fact]

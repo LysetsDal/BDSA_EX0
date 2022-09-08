@@ -95,7 +95,7 @@ public class UnitTest1
         // Arrange
         string str = "1862";
         // Act
-        bool value = Program.InputIsNotNullAndRegexMatch(str);
+        bool value = Program.InputNotNullAndRegexMatch(str);
         // Assert
         value.Should().Be(true);
     }
@@ -106,7 +106,7 @@ public class UnitTest1
         // Arrange
         string str = "0000";
         // Act
-        bool value = Program.InputIsNotNullAndRegexMatch(str);
+        bool value = Program.InputNotNullAndRegexMatch(str);
         // Assert
         value.Should().Be(true);
     }
@@ -119,7 +119,7 @@ public class UnitTest1
         // Arrange
         string str = null;
         // Act
-        bool value = Program.InputIsNotNullAndRegexMatch(str);
+        bool value = Program.InputNotNullAndRegexMatch(str);
         // Assert
         value.Should().Be(false);
     }

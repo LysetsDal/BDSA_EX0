@@ -22,7 +22,7 @@ public class Program
 
             try
             {
-                if (InputIsNotNullAndRegexMatch(input))
+                if (InputNotNullAndRegexMatch(input))
                 {
                     var num = ParseStringToInt(input);
 
@@ -47,7 +47,7 @@ public class Program
 
     // Validates that input string is not null,
     // and that it is parse-able.
-    public static bool InputIsNotNullAndRegexMatch(string input)
+    public static bool InputNotNullAndRegexMatch(string input)
     {
         if (input != null && r.IsMatch(input)) { return true; }
         return false;
@@ -69,7 +69,7 @@ public class Program
 
     public static bool IsLeapYear(int year)
     {
-        if (DivisibleBy_4(year) && !DivisibleBy_100(year) || DivisibleBy_400(year))
+        if (DivisibleBy_4(year) && !DivisibleBy_100(year) || DivisibleBy_100(year) && DivisibleBy_400(year))
         { return true; }
         return false;
     }
